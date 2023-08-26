@@ -8,9 +8,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h2>Testedsads</h2>
 	
-	<p>Hellow Wdsadsord<p>
+	<div class="container">
+		<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input type="text" class="form-control" name="email" id="email" aria-describedby="emailHelp">  
+  </div>
+  
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+	
+	</div>
+	
+	
+	
 	
 	<% String nome = "Vitor";
 		int idade = 23;
