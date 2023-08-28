@@ -1,4 +1,7 @@
+<%@page import="com.mysql.cj.jdbc.Driver"%>
 <%@page import="java.sql.*"%>
+
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="css/style.css" rel="stylesheet">
 
@@ -10,6 +13,8 @@
 <%
 
 	Connection con = null;
+	Statement st = null;
+	ResultSet rs = null;
 
 %>
 
@@ -45,14 +50,38 @@
             
             <p align="center" class="text-light mt-2">
             	<%
+            	
             	String usuario = request.getParameter("txtusuario");
             	String senha = request.getParameter("txtsenha");
+            	
+                 String user = "", pass = "";               		
+                                		
+                                		
+                      
+                 	try {
+                	Class.forName("com.mysql.cj.jdbc.Driver");                		
+                 	con = DriverManager.getConnection("jdbc:mysql://localhost:3307/javaweb?user=root&password=");
+                 	st = con.createStatement();
+                 	rs = st.executeQuery("SELECT * FROM usuarios");
+                 	while(rs.next()) {
+                 		user = rs.getString(3);
+                 		pass = rs.getString(4);
+                 	}
+                 	}catch(Exception e) {
+                	 out.print(e);
+                 	}
+                                		
+                                		
+               
+            	
+            	
+            	
                  
 				if(usuario == null || senha == null) {
-					out.println("Preencha os dados");
+					out.println(" Preencha os dados");
 				}else{
 					
-					if(usuario.equals("Hugo") && senha.equals("123")) {
+					if(usuario.equals(user) && senha.equals(pass)) {
 						response.sendRedirect("usuarios.jsp");
 					}else{
 						out.println("Dados Incorretos");
